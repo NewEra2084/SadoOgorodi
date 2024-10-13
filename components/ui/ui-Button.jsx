@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-export function UIButton({className, variant, type = "button", onSubmit , children}) {
+export function UIButton({className, variant, type = "button", onSubmit, onClick, children}) {
   const buttonColors = clsx(
     className,
     {
@@ -12,7 +12,8 @@ export function UIButton({className, variant, type = "button", onSubmit , childr
 		<button
 			className={buttonColors}
       type={type}
-      onClick={onSubmit}
+      // onClick={onSubmit}
+      onClick={onClick}
 		>
 			{children}
 		</button>

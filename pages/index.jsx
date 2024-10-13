@@ -1,5 +1,5 @@
 import { Header, List, Modal, Filters } from "../components/exports";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { localStorageWrite, localStorageRead } from "../components/logic";
 
 function HomePage() {
@@ -8,9 +8,23 @@ function HomePage() {
 
 	function updateState() {
 		const values = localStorageRead();
-		values.forEach((it) => setCustomers([...customers, it]));
-		console.log(customers);
+		setCustomers(values);
 	}
+	function Present(){
+		setCustomers(localStorageRead().filter(customer => customer.has));
+	}
+	function Missing(){
+		setCustomers(localStorageRead().filter(customer => !customer.has));
+	}
+	function filterNames(string) {
+		setCustomers(localStorageRead().filter(customer => {
+			customer.name.find(`${string}`)
+		}));
+	}
+
+	useEffect(()=>{
+		updateState()
+	},[])
 
 	return (
 		<>
@@ -19,10 +33,11 @@ function HomePage() {
 				buttonText={"Добавить"}
 				className={"px-12 text-[#4E3000]"}
 				setIsOpen={setIsOpen}
+				filterNames={filterNames}
 			/>
 			<main className="px-12 flex flex-col">
 				<List customers={customers} />
-				<Filters className="text-[#4E3000]" />
+				<Filters className="text-[#4E3000]" Present={Present} Missing={Missing} Clear={updateState}/>
 			</main>
 			<Modal
 				isOpen={isOpen}

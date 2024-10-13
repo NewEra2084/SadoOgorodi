@@ -7,6 +7,10 @@
 .roboto{
   font-family: "Roboto";
 }
+form input::placeholder{
+  opacity: 0;
+}
+
 @media screen and (max-width:1208px) {
   .header__search__input{
     min-width: 0;
@@ -14,28 +18,74 @@
   .header__search__button{
     min-width: 0;
   }
+  .filters{
+    gap: 10px;
+  }
 }
 
 @media screen and (max-width:900px){
+  /* header start */
   .header__customers{
     position: absolute;
     right: 10vw;
-    bottom: 16vh;
+    bottom: 125px;
   }
   .header__customers__text{
     display: inline;
     margin: 0 10px 0 0;
   }
+  /* header end */
+
+  .list
+
+  /* modal start*/
+  .modal__input-title{
+    display: none;
+  }
+  form input::placeholder{
+    opacity: 1;
+  }
+  /* modal end*/
 }
+
 @media screen and (max-width:720px){
+  /* header start */
   .header__customers{
     position: absolute;
     right: 10vw;
     top: 3vh;
+    height: 100px;
   }
   .header__customers__text{
     display: block;
   }
+  /* header end */
+
+  /* filters start */
+  .filters__variants{
+    gap: 10px;
+  }
+  /* filters end */
+
+  /* list start */
+  .list{
+    max-height: 45vh;
+    font-size: 20px;
+  }
+  /* list end */
+
+  /* modal start*/
+  .modal__buttons{
+    width: 150px;
+  }
+  .modal__form-input{
+    max-width: 200px;
+    margin-bottom: 20px;
+  }
+  .modal__form-input > input{
+    width: 200px;
+  }
+  /* modal end*/
 }
 
 @media screen and (max-width:505px) { 
@@ -52,6 +102,7 @@
   }
   .header__search{
     gap: 10px;
+    padding-top: 0px;
   }
   .header__customers__text{
     display: none !important;
@@ -64,7 +115,6 @@
 
   /* filters start */
   .filters{
-    gap: 10px;
     font-size: 20px;
     right: 48px;
     justify-content: center;
@@ -83,7 +133,7 @@
   /* header start */
   .header__search{
     font-size: 10px;
-    gap: 5px
+    gap: 5px;
   }
   .header__customers{
     font-size: initial;
@@ -101,14 +151,18 @@
   .filters__variants-without{
     padding: 10px 8px 10px 8px;
   }
-  /* filters end */
-
+  /* filters end */  
+  
   /* modal start*/
-  .modal__input-title{
-    display: none;
+  .modal__wrapper{
+    padding: 80px 10px 40px 10px;
+    margin-top: 5vh;
+    font-size: 20px;
   }
-  #name{
-
+  .modal__wrapper > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   /* modal end*/
 }

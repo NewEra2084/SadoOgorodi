@@ -5,14 +5,14 @@ export function Modal({ isOpen = false, onClose, add, localStorageWrite }) {
 	if (!isOpen) return;
 	return (
 		<div className="fixed inset-0 h-[100vh] bg-black/30 pt-10 pb-10 overflow-y-auto ">
-			<div className="w-[70vw] relative mx-auto mt-[15vh] bg-white rounded-3xl text-[#4E3000] sans text-3xl pl-[15%] py-[66px] overflow-x-auto">
-				<form>
-					<div className="flex justify-between w-[60%] mb-16 flex-wrap">
-						<label htmlFor="name" className="modal__input-title">ФИО</label>
-						<input data-localstorage id="name"></input>
+			<div className="w-[70vw] relative mx-auto mt-[15vh] bg-white rounded-3xl text-[#4E3000] sans text-3xl px-[18vw] py-[66px] overflow-x-auto modal__wrapper">
+				<form className="flex flex-col items-center" name="customerInfo">
+					<div className="flex mb-16 modal__form-input items-center">
+						<label htmlFor="name" className="modal__input-title w-44">ФИО</label>
+						<input className="sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]" data-localstorage id="name" placeholder="ФИО"></input>
 					</div>
-					<div className="flex w-[40%] mb-16 items-center">
-						<label htmlFor="company" className="modal__input-title">
+					<div className="flex mb-16 items-center modal__form-input">
+						<label htmlFor="company" className="modal__input-title w-44">
 							Компания
 						</label>
 						<input
@@ -21,18 +21,19 @@ export function Modal({ isOpen = false, onClose, add, localStorageWrite }) {
 								"sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]"
 							}
 							data-localstorage
+							placeholder="Компания"
 						></input>
 					</div>
-					<div className="flex justify-between w-[40%] mb-16">
-						<label htmlFor="group" className="modal__input-title">Группа</label>
+					<div className="flex mb-16 text-left">
+						<label htmlFor="group" className="modal__input-title w-44">Группа</label>
 						<select id="group" data-localstorage>
 							<option>Прохожий</option>
 							<option>Клиент</option>
 							<option>Партнер</option>
 						</select>
 					</div>
-					<div className="flex w-[40%] mb-16">
-						<label htmlFor="checking" className="modal__input-title">Присутствие</label>
+					<div className="flex mb-16">
+						<label htmlFor="checking" className="modal__input-title w-56">Присутствие</label>
 						<input
 							id="checking"
 							type="checkbox"
@@ -40,12 +41,12 @@ export function Modal({ isOpen = false, onClose, add, localStorageWrite }) {
 							className="w-8 h-8"
 						></input>
 					</div>
-					<div className="flex gap-x-8">
+					<div className="flex justify-center gap-x-8 flex-wrap gap-y-2">
 						<UIButton
-							className={"roboto h-12 w-[273px]"}
+							className={"roboto h-12 w-[273px] modal__buttons"}
 							variant={"green"}
 							type={"button"}
-							onSubmit={() => {
+							onClick={() => {
 								localStorageWrite(
 									document.querySelectorAll("[data-localstorage]"),
 									document.querySelector("[data-localstorage]")
@@ -57,7 +58,7 @@ export function Modal({ isOpen = false, onClose, add, localStorageWrite }) {
 						>
 							Добавить
 						</UIButton>
-						<UIButton className={"roboto h-12 w-[273px]"} variant={"gray"}>
+						<UIButton className={"roboto h-12 w-[273px] modal__buttons"} variant={"gray"} onClick={onClose}>
 							Закрыть
 						</UIButton>
 					</div>
