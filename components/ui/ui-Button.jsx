@@ -12,7 +12,7 @@ export function UIButton({className, variant, type = "button", onSubmit, onClick
 		<button
 			className={buttonColors}
       type={type}
-      // onClick={onSubmit}
+      onSubmit={onSubmit}
       onClick={onClick}
 		>
 			{children}

@@ -17,14 +17,6 @@ export function Filters({ Present, Missing, Clear, className }) {
 			<div className="flex gap-12 flex-wrap filters__variants">
 				<button
 					onClick={() => {
-						Present();
-						setFiltered(true);
-					}}
-				>
-					Присутствующим
-				</button>
-				<button
-					onClick={() => {
 						Missing();
 						setFiltered(true);
 					}}
@@ -32,9 +24,17 @@ export function Filters({ Present, Missing, Clear, className }) {
 					Отсутствующим
 				</button>
 				<button
+					onClick={() => {
+						Present();
+						setFiltered(true);
+					}}
+				>
+					Присутствующим
+				</button>
+				<button
 					className={clsx(
 						"rounded-3xl bg-[#C4C4C4] text-white px-2 py-5 filters__variants-without",
-						filtered && "bg-[#4CAF5B]"
+						filtered && "bg-[#4CAF5A]"
 					)}
 					onClick={() => {
 						Clear();

@@ -1,4 +1,6 @@
-export function List({ customers }) {
+export function List({ customers, str, editCustomer }) {
+	console.log(str);
+		
 	return (
 		<div className="sans max-h-[60vh] overflow-x-auto overflow-y-auto list">
 			<div className="flex text-xl text-[#4E3000] font-semibold pr-5">
@@ -10,9 +12,9 @@ export function List({ customers }) {
 			</div>
 			<hr className="h-1 mt-2" />
 			<ul className="text-3xl pr-10">
-				{customers.map((customer, id) => {
+				{customers.filter(customer => customer.name.includes(str.name) && customer.company.includes(str.company)).map((customer, id) => {
 					return (
-						<li className="pt-8 flex" key={id}>
+						<li className="pt-8 flex" key={id} onClick={() => editCustomer(id)}>
 							<h2 className="min-w-[200px] tabular-nums">{id + 1}</h2>
 							<h2 className="min-w-[400px] mr-10">{customer.name}</h2>
 							<h2 className="min-w-[500px]">{customer.company}</h2>
