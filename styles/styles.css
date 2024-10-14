@@ -40,7 +40,7 @@ form input::placeholder{
 
   /* modal start*/
   .modal__input-title{
-    display: none;
+    display: none !important;
   }
   form input::placeholder{
     opacity: 1;

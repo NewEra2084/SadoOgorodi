@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { localStorageWrite, localStorageRead } from "../components/logic";
 
 function HomePage() {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState({ adding: false, replacing: false });
 	const [customers, setCustomers] = useState([]);
 	const [tempStr, setTempStr] = useState({ name: "", company: "" });
+	const [countInOutState, setCountInOut] = useState({ in: "", out: "" });
+	let customerId = 0;
 
 	function updateState() {
 		const values = localStorageRead();
@@ -18,19 +20,30 @@ function HomePage() {
 		setCustomers(localStorageRead().filter((customer) => !customer.has));
 	}
 	function filterNames(value) {
-		setTempStr({...tempStr, name:value});
+		setTempStr({ ...tempStr, name: value });
 	}
 	function filterCompanies(value) {
-		setTempStr({...tempStr, company:value});
+		setTempStr({ ...tempStr, company: value });
 	}
 	function editCustomer(id) {
-		setIsOpen(true);
-		const values = localStorageRead()
-		return {...values[id]}
+		setIsOpen({ ...isOpen, replacing: true });
+		customerId = id;
+	}
+	function countInOut() {
+		setCountInOut({
+			out: localStorageRead().filter((customer) => !customer.has).length,
+			in: localStorageRead().filter((customer) => customer.has).length
+		});
+	}
+
+	function replaceCustomer(id) {
+		const keyName = localStorageRead();
+		localStorage.removeItem(keyName[id].name);
 	}
 
 	useEffect(() => {
 		updateState();
+		countInOut();
 	}, []);
 
 	return (
@@ -42,6 +55,8 @@ function HomePage() {
 				setIsOpen={setIsOpen}
 				filterNames={filterNames}
 				filterCompanies={filterCompanies}
+				inCount={countInOutState.in}
+				outCount={countInOutState.out}
 			/>
 			<main className="px-12 flex flex-col">
 				<List customers={customers} str={tempStr} editCustomer={editCustomer} />
@@ -53,14 +68,18 @@ function HomePage() {
 				/>
 			</main>
 			<Modal
-				isOpen={isOpen}
-				onClose={() => setIsOpen(false)}
-				add={updateState}
+				isOpen={isOpen.adding}
+				onClose={() => setIsOpen({ ...isOpen, adding: false })}
+				action={updateState}
+				actionName="Добавить"
 				localStorageWrite={localStorageWrite}
-				fio
-				company
-				group
-				has
+			/>
+			<Modal
+				isOpen={isOpen.replacing}
+				onClose={() => setIsOpen({ ...isOpen, replacing: false })}
+				action={() => replaceCustomer(customerId)}
+				actionName="Поменять"
+				localStorageWrite={localStorageWrite}
 			/>
 		</>
 	);

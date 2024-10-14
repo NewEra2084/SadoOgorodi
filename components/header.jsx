@@ -9,7 +9,11 @@ export function Header({
 	filterNames,
 	filterCompanies,
 	setIsOpen,
+	inCount = 0,
+	outCount = 0
 }) {
+	console.log(inCount);
+	
 	return (
 		<header className={clsx(className, "flex pt-6 flex-wrap mb-7")}>
 			<Image src={logo} alt="Агроном сад" className="mr-8 header__logo" />
@@ -32,15 +36,15 @@ export function Header({
 				/>
 				<button
 					className="roboto bg-[#4CAF50] text-white rounded-xl drop-shadow-md h-12 px-10 min-w-[273px] header__search__button"
-					onClick={() => setIsOpen(true)}
+					onClick={() => setIsOpen({...setIsOpen, adding:true})}
 				>
 					{buttonText}
 				</button>
 			</div>
 			<div className="ml-auto sans text-3xl pt-1 font-bold text-right order-3 header__customers">
 				<h3 className="mb-[5px] header__customers__text">Посетители</h3>
-				<span className="text-[#80BB00]">280</span> /{" "}
-				<span className="text-[#EC5937]">35</span>
+				<span className="text-[#80BB00]">{inCount}</span> /{" "}
+				<span className="text-[#EC5937]">{outCount}</span>
 			</div>
 		</header>
 	);

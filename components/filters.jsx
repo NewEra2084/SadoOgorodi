@@ -34,7 +34,7 @@ export function Filters({ Present, Missing, Clear, className }) {
 				<button
 					className={clsx(
 						"rounded-3xl bg-[#C4C4C4] text-white px-2 py-5 filters__variants-without",
-						filtered && "bg-[#4CAF5A]"
+						filtered && "bg-[#54d866]"
 					)}
 					onClick={() => {
 						Clear();

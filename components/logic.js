@@ -33,5 +33,6 @@ function localStorageRead() {
 
 	return values;
 }
-//TODO сделать логику удаления и замены значений в localstorage
-export { localStorageWrite, localStorageRead };
+
+
+export { localStorageWrite, localStorageRead};

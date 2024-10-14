@@ -4,12 +4,13 @@ import { UIButton } from "./ui/ui-Button";
 export function Modal({
 	isOpen = false,
 	onClose,
-	add,
+	action,
 	localStorageWrite,
 	fio = "",
 	company = "",
 	group = "",
 	has = "",
+	actionName = "Добавить"
 }) {
 	if (!isOpen) return;
 	return (
@@ -17,10 +18,11 @@ export function Modal({
 			<div className="w-[70vw] relative mx-auto mt-[15vh] bg-white rounded-3xl text-[#4E3000] sans text-3xl px-[18vw] py-[66px] overflow-x-auto modal__wrapper">
 				<form className="flex flex-col items-center" name="customerInfo">
 					<div className="flex mb-16 modal__form-input items-center">
-						<label htmlFor="name" className="modal__input-title w-44">
+						<label htmlFor="name" className="w-44 modal__input-title">
 							ФИО
 						</label>
 						<input
+							required
 							className="sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]"
 							data-localstorage
 							id="name"
@@ -33,12 +35,13 @@ export function Modal({
 							Компания
 						</label>
 						<input
+						required
 							id="company"
 							className={
 								"sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]"
 							}
 							data-localstorage
-							placeholder="Компания"
+							placeholder={fio || 'Компания'}
 						></input>
 					</div>
 					<div className="flex mb-16 text-left">
@@ -68,16 +71,14 @@ export function Modal({
 							variant={"green"}
 							type={"submit"}
 							onClick={() => {
+								action();
 								localStorageWrite(
 									document.querySelectorAll("[data-localstorage]"),
 									document.querySelector("[data-localstorage]")
 								);
-								setTimeout(() => {
-									add();
-								}, 0);
 							}}
 						>
-							Добавить
+							{actionName}
 						</UIButton>
 						<UIButton
 							className={"roboto h-12 w-[273px] modal__buttons"}
