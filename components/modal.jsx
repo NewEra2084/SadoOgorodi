@@ -10,7 +10,7 @@ export function Modal({
 	company = "",
 	group = "",
 	has = "",
-	actionName = "Добавить"
+	actionName = "Добавить",
 }) {
 	if (!isOpen) return;
 	return (
@@ -27,7 +27,6 @@ export function Modal({
 							data-localstorage
 							id="name"
 							placeholder="ФИО"
-							
 						></input>
 					</div>
 					<div className="flex mb-16 items-center modal__form-input">
@@ -35,13 +34,13 @@ export function Modal({
 							Компания
 						</label>
 						<input
-						required
+							required
 							id="company"
 							className={
 								"sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]"
 							}
 							data-localstorage
-							placeholder={fio || 'Компания'}
+							placeholder={fio || "Компания"}
 						></input>
 					</div>
 					<div className="flex mb-16 text-left">

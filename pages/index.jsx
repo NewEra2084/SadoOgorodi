@@ -7,7 +7,7 @@ function HomePage() {
 	const [customers, setCustomers] = useState([]);
 	const [tempStr, setTempStr] = useState({ name: "", company: "" });
 	const [countInOutState, setCountInOut] = useState({ in: "", out: "" });
-	let customerId = 0;
+	const [cust, setCust] = useState("");
 
 	function updateState() {
 		const values = localStorageRead();
@@ -25,9 +25,9 @@ function HomePage() {
 	function filterCompanies(value) {
 		setTempStr({ ...tempStr, company: value });
 	}
-	function editCustomer(id) {
+	function editCustomer(name) {
 		setIsOpen({ ...isOpen, replacing: true });
-		customerId = id;
+		setCust(name);
 	}
 	function countInOut() {
 		setCountInOut({
@@ -36,9 +36,8 @@ function HomePage() {
 		});
 	}
 
-	function replaceCustomer(id) {
-		const keyName = localStorageRead();
-		localStorage.removeItem(keyName[id].name);
+	function replaceCustomer(name) {
+		localStorage.removeItem(name);
 	}
 
 	useEffect(() => {
@@ -77,7 +76,7 @@ function HomePage() {
 			<Modal
 				isOpen={isOpen.replacing}
 				onClose={() => setIsOpen({ ...isOpen, replacing: false })}
-				action={() => replaceCustomer(customerId)}
+				action={() => replaceCustomer(cust)}
 				actionName="Поменять"
 				localStorageWrite={localStorageWrite}
 			/>

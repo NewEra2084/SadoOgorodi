@@ -11,10 +11,8 @@ export function List({ customers, str, editCustomer }) {
 			<hr className="h-1 mt-2" />
 			<ul className="text-3xl pr-10">
 				{customers.filter(customer => customer.name.includes(str.name) && customer.company.includes(str.company)).map((customer, id) => {
-					console.log(customer.name);
-					
 					return (
-						<li className="pt-8 flex" key={id} onClick={() => editCustomer(id)}>
+						<li className="pt-8 flex" key={id} onClick={() => editCustomer(customer.name)}>
 							<h2 className="min-w-[200px] tabular-nums">{id + 1}</h2>
 							<h2 className="min-w-[400px] mr-10">{customer.name}</h2>
 							<h2 className="min-w-[500px]">{customer.company}</h2>
