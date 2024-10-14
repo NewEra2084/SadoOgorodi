@@ -21,12 +21,17 @@ function localStorageRead() {
 	let count = 0;
 	for (let i = 0; i < localStorage.length; i++) {
 		let key = localStorage.key(i);
-		if (!JSON.parse(localStorage.getItem(key))["name"]) continue;
-		values.push(JSON.parse(localStorage.getItem(key)));
-		count++;
+		try {
+			if (!JSON.parse(localStorage.getItem(key))["name"]) continue;
+			values.push(JSON.parse(localStorage.getItem(key)));
+		} catch (error) {
+			console.log(error);
+		}finally{
+			count++;
+		}
 	}
 
 	return values;
 }
-
+//TODO сделать логику удаления и замены значений в localstorage
 export { localStorageWrite, localStorageRead };
