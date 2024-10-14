@@ -67,7 +67,7 @@ export function Modal({
 							className={"roboto h-12 w-[273px] modal__buttons"}
 							variant={"green"}
 							type={"submit"}
-							onSubmit={() => {
+							onClick={() => {
 								localStorageWrite(
 									document.querySelectorAll("[data-localstorage]"),
 									document.querySelector("[data-localstorage]")
