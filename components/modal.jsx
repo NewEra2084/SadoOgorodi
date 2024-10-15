@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { CrossIcon } from "../media/cross";
 import { UIButton } from "./ui/ui-Button";
 
@@ -6,13 +7,11 @@ export function Modal({
 	onClose,
 	action,
 	localStorageWrite,
-	fio = "",
-	company = "",
-	group = "",
-	has = "",
+	info="",
 	actionName = "Добавить",
 }) {
 	if (!isOpen) return;
+	
 	return (
 		<div className="fixed inset-0 h-[100vh] bg-black/30 pt-10 pb-10 overflow-y-auto ">
 			<div className="w-[70vw] relative mx-auto mt-[15vh] bg-white rounded-3xl text-[#4E3000] sans text-3xl px-[18vw] py-[66px] overflow-x-auto modal__wrapper">
@@ -23,10 +22,10 @@ export function Modal({
 						</label>
 						<input
 							required
-							className="sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]"
+							className={clsx(!info.name && "a", "sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]")}
 							data-localstorage
 							id="name"
-							placeholder="ФИО"
+							placeholder={info?.name || "ФИО"}
 						></input>
 					</div>
 					<div className="flex mb-16 items-center modal__form-input">
@@ -36,11 +35,9 @@ export function Modal({
 						<input
 							required
 							id="company"
-							className={
-								"sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]"
-							}
+							className={clsx(!info.name && "a", "sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]")}
 							data-localstorage
-							placeholder={fio || "Компания"}
+							placeholder={info?.company || "Компания"}
 						></input>
 					</div>
 					<div className="flex mb-16 text-left">
@@ -48,6 +45,7 @@ export function Modal({
 							Группа
 						</label>
 						<select id="group" data-localstorage>
+							{info ? <option>Не менять: {info?.role}</option> : ""}
 							<option>Прохожий</option>
 							<option>Клиент</option>
 							<option>Партнер</option>

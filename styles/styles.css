@@ -7,57 +7,131 @@
 .roboto{
   font-family: "Roboto";
 }
-form input::placeholder{
+.a::placeholder{
   opacity: 0;
 }
+.burger::after{
+  content: "";
+  width: 35px;
+  height: 25px;
+  position: absolute;
+  top: -25px;
+  right: 15px;
+  background: white;
+  border-radius: 0 0 60px 0;
+}
+.burger::before{
+  content: "";
+  width: 30px;
+  height: 25px;
+  position: absolute;
+  top: -24px;
+  right: 15px;
+  border-radius: 30px 0px 0 0;
+  background: #4E3000;
+}
 
-@media screen and (max-width:1208px) {
+@media screen and (max-width:1650px){
+  .header__customers{
+    top: 83vh;
+  }
+}
+@media screen and (max-width:1460px){
+  .header__customers{
+    top: 90vh;
+  }
+  .header__customers__text{
+    display: inline;
+    margin-right: 10px;
+  }
+  .filters{
+    bottom: 3vh;
+  }
+}
+
+@media screen and (max-width:1250px) {
   .header__search__input{
     min-width: 0;
   }
   .header__search__button{
     min-width: 0;
   }
+  .header__customers{
+    top: 24px;
+    right: 48px;
+  }
+  .header__customers__text{
+    display: block;
+  }
   .filters{
+    bottom: 48px;
     gap: 10px;
+    align-items: center;
+  }
+  .filters button{
+    max-height: 150px;
   }
 }
 
-@media screen and (max-width:900px){
+@media screen and (max-width:1200px){
+  .header__customers{
+    top: 80vh;
+    right: calc(100vw - 48px - 242px);
+  }
+  .header__customers__text{
+    display: inline;
+  }
+}
+
+@media screen and (max-width:980px){
   /* header start */
   .header__customers{
     position: absolute;
-    right: 10vw;
-    bottom: 125px;
+    right: calc(100vw - 48px - 242px - 220px);
+    top: 30px;
   }
   .header__customers__text{
     display: inline;
     margin: 0 10px 0 0;
   }
-  /* header end */
 
-  .list
-
-  /* modal start*/
-  .modal__input-title{
-    display: none !important;
+  .list{
+    font-size: 20px !important;
+    height: 80vh;
   }
-  form input::placeholder{
+  .list__title{
+    font-size: 15px;
+  }
+  .list__collection{
+    font-size: 20px;
+  }
+  .list__collection__item{
+    padding-top: 10px;
+  }
+  .filters{
+    bottom: 10px;
+    font-size: 20px;
+  }
+
+  /* modal start */
+  .modal__input-title{
+    display: none;
+  }
+  .a::placeholder{
     opacity: 1;
   }
-  /* modal end*/
 }
 
-@media screen and (max-width:720px){
+@media screen and (max-width:840px){
   /* header start */
   .header__customers{
     position: absolute;
-    right: 10vw;
-    top: 3vh;
-    height: 100px;
+    left: 15vw;
+    bottom: 10vh !important;
+    height: 80px;
   }
   .header__customers__text{
-    display: block;
+    display: inline;
   }
   /* header end */
 
@@ -69,7 +143,7 @@ form input::placeholder{
 
   /* list start */
   .list{
-    max-height: 45vh;
+    max-height: 60vh;
     font-size: 20px;
   }
   /* list end */
@@ -88,7 +162,7 @@ form input::placeholder{
   /* modal end*/
 }
 
-@media screen and (max-width:505px) { 
+@media screen and (max-width:610px) { 
   /* header start */
   .header__logo{
     width: 120px;
@@ -108,10 +182,15 @@ form input::placeholder{
     display: none !important;
   }
   .header__customers{
-    position: static;
     order: 1;
+    right: calc(100vw - 48px - 150px - 40px);
+    top: 16px;
   }
   /* header end */
+
+  .list{
+    max-height: 65vh;
+  }
 
   /* filters start */
   .filters{
@@ -129,24 +208,31 @@ form input::placeholder{
   /* filters end */
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 410px) {
   /* header start */
   .header__search{
     font-size: 10px;
     gap: 5px;
   }
   .header__customers{
-    font-size: initial;
+    font-size: 25px;
+    top: 48px;
+    right: inherit;
+    left: calc(48px + 60px);
   }
   /* header end */
 
+  .list{
+    max-height: 60vh;
+  }
+
   /* filters start */
   .filters{
-    font-size: 15px;
+    font-size: 20px;
     bottom: 3vh;
   }
   .filters__title{
-    font-size: 15px;
+    font-size: 20px;
   }
   .filters__variants-without{
     padding: 10px 8px 10px 8px;

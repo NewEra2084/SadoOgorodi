@@ -1,49 +1,31 @@
 import { Header, List, Modal, Filters } from "../components/exports";
 import { useEffect, useState } from "react";
-import { localStorageWrite, localStorageRead } from "../components/logic";
+import {
+	localStorageWrite,
+	updateState,
+	Present,
+	Missing,
+	filterNames,
+	filterCompanies,
+	editCustomer,
+	replaceCustomer,
+	countInOut
+} from "../components/logic";
 
 function HomePage() {
 	const [isOpen, setIsOpen] = useState({ adding: false, replacing: false });
 	const [customers, setCustomers] = useState([]);
 	const [tempStr, setTempStr] = useState({ name: "", company: "" });
 	const [countInOutState, setCountInOut] = useState({ in: "", out: "" });
+	const [replaced, setReplaced] = useState("");
 	const [cust, setCust] = useState("");
-
-	function updateState() {
-		const values = localStorageRead();
-		setCustomers(values);
-	}
-	function Present() {
-		setCustomers(localStorageRead().filter((customer) => customer.has));
-	}
-	function Missing() {
-		setCustomers(localStorageRead().filter((customer) => !customer.has));
-	}
-	function filterNames(value) {
-		setTempStr({ ...tempStr, name: value });
-	}
-	function filterCompanies(value) {
-		setTempStr({ ...tempStr, company: value });
-	}
-	function editCustomer(name) {
-		setIsOpen({ ...isOpen, replacing: true });
-		setCust(name);
-	}
-	function countInOut() {
-		setCountInOut({
-			out: localStorageRead().filter((customer) => !customer.has).length,
-			in: localStorageRead().filter((customer) => customer.has).length
-		});
-	}
-
-	function replaceCustomer(name) {
-		localStorage.removeItem(name);
-	}
-
 	useEffect(() => {
-		updateState();
-		countInOut();
+		updateState(setCustomers);
+		countInOut(setCountInOut);
 	}, []);
+	useEffect(()=>{
+		setCust(JSON.parse(localStorage.getItem(replaced)))
+	},[replaced])
 
 	return (
 		<>
@@ -54,31 +36,41 @@ function HomePage() {
 				setIsOpen={setIsOpen}
 				filterNames={filterNames}
 				filterCompanies={filterCompanies}
+				state={setTempStr}
+				tempStr={tempStr}
 				inCount={countInOutState.in}
 				outCount={countInOutState.out}
 			/>
 			<main className="px-12 flex flex-col">
-				<List customers={customers} str={tempStr} editCustomer={editCustomer} />
+				<List
+					customers={customers}
+					str={tempStr}
+					editCustomer={editCustomer}
+					setIsOpen={setIsOpen}
+					setReplaced={setReplaced}
+					isOpen={isOpen}
+				/>
 				<Filters
 					className="text-[#4E3000]"
-					Present={Present}
-					Missing={Missing}
-					Clear={updateState}
+					Present={() => Present(setCustomers)}
+					Missing={() => Missing(setCustomers)}
+					Clear={() => updateState(setCustomers)}
 				/>
 			</main>
 			<Modal
 				isOpen={isOpen.adding}
 				onClose={() => setIsOpen({ ...isOpen, adding: false })}
-				action={updateState}
+				action={() => updateState(setCustomers)}
 				actionName="Добавить"
 				localStorageWrite={localStorageWrite}
 			/>
 			<Modal
 				isOpen={isOpen.replacing}
 				onClose={() => setIsOpen({ ...isOpen, replacing: false })}
-				action={() => replaceCustomer(cust)}
+				action={() => replaceCustomer(replaced)}
 				actionName="Поменять"
 				localStorageWrite={localStorageWrite}
+				info={cust}
 			/>
 		</>
 	);
