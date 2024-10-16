@@ -13,7 +13,7 @@ export function Header({
 	tempStr,
 	setIsOpen,
 	inCount = 0,
-	outCount = 0,
+	outCount = 0
 }) {
 	const [isClicked, setClicked] = useState(false);
 	function burgerClickHandle() {

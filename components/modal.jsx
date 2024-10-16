@@ -22,7 +22,7 @@ export function Modal({
 						</label>
 						<input
 							required
-							className={clsx(!info.name && "a", "sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]")}
+							className={clsx(!info?.name && "a", "sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]")}
 							data-localstorage
 							id="name"
 							placeholder={info?.name || "ФИО"}
@@ -35,7 +35,7 @@ export function Modal({
 						<input
 							required
 							id="company"
-							className={clsx(!info.name && "a", "sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]")}
+							className={clsx(!info?.name && "a", "sans drop-shadow-md rounded-lg text-[#737373] pl-5 py-[15px]")}
 							data-localstorage
 							placeholder={info?.company || "Компания"}
 						></input>
