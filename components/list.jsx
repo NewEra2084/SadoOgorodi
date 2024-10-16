@@ -33,8 +33,8 @@ export function List({
 								}
 							>
 								<h2 className="min-w-[200px] tabular-nums">{id + 1}</h2>
-								<h2 className="min-w-[400px] mr-10">{customer.name}</h2>
-								<h2 className="min-w-[500px]">{customer.company}</h2>
+								<h2 className="min-w-[400px] mr-10 truncate">{customer.name}</h2>
+								<h2 className="min-w-[500px] truncate">{customer.company}</h2>
 								<h2 className="min-w-[500px]">{customer.role}</h2>
 								{customer.has ? (
 									<div className="bg-[#80BB00] rounded-full h-14 min-w-14 ml-auto"></div>
