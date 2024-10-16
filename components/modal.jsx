@@ -45,7 +45,6 @@ export function Modal({
 							Группа
 						</label>
 						<select id="group" data-localstorage>
-							{info ? <option>Не менять: {info?.role}</option> : ""}
 							<option>Прохожий</option>
 							<option>Клиент</option>
 							<option>Партнер</option>
