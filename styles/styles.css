@@ -198,16 +198,16 @@
 
 	/* filters start */
 	.filters {
-		font-size: 20px;
-		right: 48px;
+		font-size: 20px !important;
+		right: 48px !important;
 		justify-content: center;
 	}
 	.filters__title {
-		font-size: 25px;
+		font-size: 25px !important;
 	}
 	.filters__variants {
-		gap: 10px;
-		justify-content: center;
+		gap: 10px !important;
+		justify-content: center !important;
 	}
 }
 
