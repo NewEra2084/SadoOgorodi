@@ -199,16 +199,16 @@
 
 	/* filters start */
 	.filters {
-		font-size: 20px !important;
-		right: 48px !important;
+		font-size: 20px;
+		right: 48px;
 		justify-content: center;
 	}
 	.filters__title {
-		font-size: 25px !important;
+		font-size: 25px;
 	}
 	.filters__variants {
-		gap: 10px !important;
-		justify-content: center !important;
+		gap: 10px;
+		justify-content: center;
 	}
 }
 
